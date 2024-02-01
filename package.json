@@ -1,0 +1,22 @@
+{
+  "name": "task-2-file-manager",
+  "version": "1.0.0",
+  "description": "file manager (node.js)",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mill9r/nodejs-task2-file-manager.git"
+  },
+  "author": "Andrei Tsylko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mill9r/nodejs-task2-file-manager/issues"
+  },
+  "homepage": "https://github.com/mill9r/nodejs-task2-file-manager#readme"
+}
