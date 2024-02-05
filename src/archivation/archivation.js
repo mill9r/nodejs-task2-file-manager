@@ -5,16 +5,12 @@ const compress = (inPath, outPath) => {
     const zlibStream = zlib.createBrotliCompress();
     const {inStream, outStream} = getFileStreams(inPath, outPath);
     inStream.pipe(zlibStream).pipe(outStream);
-
-    return outPath
 }
 
 const decompress = (inPath, outPath) => {
     const zlibStream = zlib.createBrotliDecompress();
     const {inStream, outStream} = getFileStreams(inPath, outPath);
     inStream.pipe(zlibStream).pipe(outStream);
-
-    return outPath
 }
 
 const getFileStreams = (inPath, outPath) => {

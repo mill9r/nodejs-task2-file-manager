@@ -38,8 +38,10 @@ const createFile = async (name) => {
 }
 
 const readFile = async (name) => {
-    console.log(await read(path.join(getCurrentDirName(), name)));
+    return await read(path.join(getCurrentDirName(), name));
 }
+
+
 
 
 export {list, createFile, readFile}

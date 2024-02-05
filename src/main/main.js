@@ -7,6 +7,7 @@ import {changeDirectory} from "../os/navigation.js";
 import {homeDir} from "../os/os.js";
 import {ENTER_COMMAND, NEW_LINE} from "../constants/index.js";
 import {getCommand, getParams, validateCommand} from "../cli/util.js";
+import {getCurrentDirName} from "../file/file-util.js";
 
 const main = async () => {
     const args = parseArgs();
@@ -31,8 +32,9 @@ const main = async () => {
                     const validatedCommand = validateCommand(command, params)
                     if (validatedCommand.isValid) {
                         executeComposerFunction(command, params).then((result) => {
-                            console.log(result)
-                            const content = `Enter command${NEW_LINE}`;
+                            console.log(result);
+                            console.log(getCurrentDirName());
+                            const content = `Enter command: ${NEW_LINE}`;
                             this.push(content);
                             callback();
                         })
