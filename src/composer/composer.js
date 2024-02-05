@@ -1,18 +1,20 @@
 import {compress} from "../archivation/archivation.js";
-import {goToUpDir} from "../os/navigation.js";
-import {list} from "../file/file.service.js";
+import {changeDirectory, goToUpDir} from "../os/navigation.js";
+import {createFile, list, readFile} from "../file/file.service.js";
 
 const composer = {
     'compress': compress,
     'up': goToUpDir,
-    'ls': list
+    'ls': list,
+    'cd': changeDirectory,
+    'add': createFile,
+    'cat': readFile
 }
 
-async function executeComposerFunction(input) {
-    if (typeof composer[input[0]] === 'function') {
+async function executeComposerFunction(command, params) {
+    if (typeof composer[command] === 'function') {
         try {
-            const result = await composer[input[0]].apply(null, input);
-            console.log(result);
+            return await composer[command].apply(null, params);
         } catch (error) {
             console.error(error);
         }

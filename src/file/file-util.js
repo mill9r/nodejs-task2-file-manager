@@ -1,8 +1,8 @@
-import {dirname, join} from "path";
+import {join} from "path";
 import fs from 'fs/promises'
 
 const getCurrentDirName = () => {
-    return dirname(process.cwd())
+    return process.cwd()
 }
 
 const doesDirectoryExist = async (path) => {
@@ -15,8 +15,6 @@ const doesDirectoryExist = async (path) => {
 }
 
 
-// check permissions of a file (read, write, execute)
-// could read relative or absolute path
 const doesFileExist = async (dir, file) => {
     try {
         if (!await doesDirectoryExist(dir)) {
