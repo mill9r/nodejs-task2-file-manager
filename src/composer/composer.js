@@ -1,6 +1,7 @@
 import {compress} from "../archivation/archivation.js";
 import {changeDirectory, goToUpDir} from "../os/navigation.js";
 import {createFile, list, readFile} from "../file/file.service.js";
+import {processOsCommand} from "../os/os.service.js";
 
 const composer = {
     'compress': compress,
@@ -8,7 +9,8 @@ const composer = {
     'ls': list,
     'cd': changeDirectory,
     'add': createFile,
-    'cat': readFile
+    'cat': readFile,
+    'os': processOsCommand
 }
 
 async function executeComposerFunction(command, params) {
