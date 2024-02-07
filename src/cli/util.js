@@ -31,7 +31,8 @@ const commands = {
     'decompress': 2,
     'ls': 0,
     'cd': 1,
-    'up': 0
+    'up': 0,
+    '.exit': 0,
 };
 
 const validOsCommands = ['--EOL', '--cpus', '--homedir', '--username', '--architecture'];

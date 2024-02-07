@@ -11,8 +11,9 @@ const goToUpDir = () => {
     if (inNotRootDirectory) {
         process.chdir(parentDir);
     }
-
 }
+
+const isPathExist = async (path) => await fs.access(path).then(() => true).catch(() => false);
 
 const changeDirectory = async (path) => {
     let newPath;
@@ -23,12 +24,11 @@ const changeDirectory = async (path) => {
         newPath = resolve(process.cwd(), path);
     }
 
-    const isPathExist = await fs.access(newPath).then(() => true).catch(() => false);
     const isDirectory = await fs.lstat(newPath);
 
     isDirectory.isDirectory()
 
-    if (isPathExist && isDirectory.isDirectory()) {
+    if (await isPathExist(newPath) && isDirectory.isDirectory()) {
         process.chdir(newPath);
         printCurrentDir(process.cwd())
     } else {
@@ -37,4 +37,21 @@ const changeDirectory = async (path) => {
 }
 
 
-export {goToUpDir, changeDirectory}
+const dirPathDecorator = (fn) => {
+    return async (from, to) => {
+        const isAbsolutePathValid = from && isAbsolute(from);
+        const callAbsolutePath = isAbsolutePathValid && ((to && await isPathExist(to) && await isPathExist(from)) || await isPathExist(from));
+
+        if (isAbsolutePathValid && callAbsolutePath) {
+            return await fn(from, to);
+        } else {
+            return await fn(resolve(process.cwd(), from), to && resolve(process.cwd(), to));
+        }
+
+    }
+}
+
+
+export {goToUpDir, changeDirectory, dirPathDecorator}
+
+

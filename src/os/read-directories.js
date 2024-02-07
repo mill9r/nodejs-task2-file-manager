@@ -1,9 +1,6 @@
-import {readDir} from "./list.js";
-import {getCurrentDirName} from "./file-util.js";
 import {DirContentPattern, printTable} from "../print/print.js";
-import {create} from "./create.js";
-import path from "node:path";
-import {read} from "./read.js";
+import {readDir} from "../file/list.js";
+import {getCurrentDirName} from "../file/file-util.js";
 
 const DIRECTORY = 'directory';
 const FILE = 'file';
@@ -33,15 +30,5 @@ const list = async () => {
     printTable([...preparedDirsForPrint, ...preparedFilesForPrint])
 }
 
-const createFile = async (name) => {
-    await create(path.join(getCurrentDirName(), name), '')
-}
 
-const readFile = async (name) => {
-    return await read(path.join(getCurrentDirName(), name));
-}
-
-
-
-
-export {list, createFile, readFile}
+export {list}
