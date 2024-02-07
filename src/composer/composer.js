@@ -8,6 +8,7 @@ import {list} from "../os/read-directories.js";
 import {copy} from "../file/copy.js";
 import {renameFile} from "../file/rename.js";
 import {deleteFile} from "../file/delete.js";
+import {OPERATION_FAILED} from "../constants/index.js";
 
 const composer = {
     'up': goToUpDir,
@@ -29,7 +30,7 @@ async function executeComposerFunction(command, params) {
         try {
             return await composer[command].apply(null, params);
         } catch (error) {
-            console.error(error);
+            console.error(OPERATION_FAILED);
         }
     } else {
         console.log('The specified command is not a function.');
